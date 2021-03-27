@@ -38,7 +38,6 @@ foreach ($spins as $spin) {
 
 
 
-
 if (isset($_POST['mise'])) {
 
    
@@ -64,14 +63,18 @@ if (isset($_POST['mise'])) {
     
 
         $_SESSION['solde'] = $_SESSION['solde'] - $mise + $gain;
+        
 
-        $finSpin = [];
-        array_push($finSpin,$gain,$_SESSION['solde']);
-         print_r(json_encode($finSpin));
+    $resultSpin = [];
+    foreach($result as $icone) {
+        array_push($resultSpin,$icone['px']);
+    }
+    array_push($resultSpin,$gain,$_SESSION['solde']);
+
+    print_r(json_encode($resultSpin));
+
+
 }
-
-
-
 
 ?>
 

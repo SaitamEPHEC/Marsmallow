@@ -1,22 +1,13 @@
 $(document).ready(function() {
 
     
+$(".mise").click(function() {
 
-    $('#control').click(function() {
-        var mise = $("#mise").children("option:selected").val();
+    $(".mise").removeClass("miseActive");
+    $(this).addClass("miseActive");
 
-
-        $.post( "algo.php",{
-            mise : mise
-              }).done(function( data ) {
-                console.log(data);
-
-            var result =  jQuery.parseJSON(data);
-            console.log(result);
-            $("#gain").html(result[0]);
-            $("#solde").html(result[1]);
-                      });  
-    })
+})
+  
 
 
 })
