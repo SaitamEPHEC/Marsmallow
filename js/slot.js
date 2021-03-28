@@ -112,6 +112,7 @@ $(document).ready(function() {
         this.maxSpeed = max; //max speed this slot can have
         this.pos = null; //final position of the slot  
         this.finalpx = 0;  
+        this.prock = 0;
 
         $(el).pan({
             fps:30,
@@ -270,6 +271,8 @@ $(document).ready(function() {
         
         if(valControl == "Start") {
             
+
+            $("#slot1,#slot2,#slot3,#slot4,#slot5,#slot6,#slot7,#slot8,#slot9").removeClass("borderlighter");
             var mise = $(".miseActive").attr('name');
             
            
@@ -291,9 +294,19 @@ $(document).ready(function() {
                         g.finalpx = result[6];
                         h.finalpx = result[7];
                         i.finalpx = result[8];
-                            
-                         gain = result[9];
-                         solde = result[10];
+                        a.prock = result[9];
+                        b.prock = result[10];
+                        c.prock = result[11];
+                        d.prock = result[12];
+                        e.prock = result[13];
+                        f.prock = result[14];
+                        g.prock = result[15];
+                        h.prock = result[16];
+                        i.prock = result[17];
+                        
+                         gain = result[18];
+                         solde = result[19];
+                         console.log(result);
                         
                              }               });     
             
@@ -319,6 +332,7 @@ $(document).ready(function() {
                     enableControl();
                     $("#control").click();
                     window.clearInterval(x);
+                    
                 }
             }, 100);
         } else if(valControl == "Stop") {
@@ -346,6 +360,35 @@ $(document).ready(function() {
                 if(a.speed === 0 && b.speed === 0 && c.speed === 0 ) {
                     enableControl();
                     window.clearInterval(x);
+
+                    if (a.prock == 1) {
+                        $("#slot1").addClass("borderlighter");
+                    }
+                    if (b.prock == 1) {
+                        $("#slot2").addClass("borderlighter");
+                    }
+                    if (c.prock == 1) {
+                        $("#slot3").addClass("borderlighter");
+                    }
+                    if (d.prock == 1) {
+                        $("#slot4").addClass("borderlighter");
+                    }
+                    if (e.prock == 1) {
+                        $("#slot5").addClass("borderlighter");
+                    }
+                    if (f.prock == 1) {
+                        $("#slot6").addClass("borderlighter");
+                    }
+                    if (g.prock == 1) {
+                        $("#slot7").addClass("borderlighter");
+                    }
+                    if (h.prock == 1) {
+                        $("#slot8").addClass("borderlighter");
+                    }
+                    if (i.prock == 1) {
+                        $("#slot9").addClass("borderlighter");
+                    }
+
                     $(".finalSolde").html(solde);
                     $(".finalGain").html(gain);
                     valControl = "Start";

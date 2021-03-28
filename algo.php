@@ -25,7 +25,8 @@ foreach ($spins as $spin) {
         //print_r($intervalle) . '<br>';
 
         if ( (  $spin >= intval($intervalle[0])   ) && ( $spin <= intval($intervalle[1])   ) ) {
-
+            
+            $icone['prock'] = 0;
             array_push($result,$icone);
 
         }
@@ -37,7 +38,6 @@ foreach ($spins as $spin) {
 
 
 
-
 if (isset($_POST['mise'])) {
 
    
@@ -46,19 +46,34 @@ if (isset($_POST['mise'])) {
 
     if($result[0]['name'] == $result[1]['name'] && $result[0]['name'] == $result[2]['name']){
         $gain += $result[0]['gain'] * $mise;
+        $result[0]['prock'] = 1;
+        $result[1]['prock'] = 1;
+        $result[2]['prock'] = 1;
         
         }
          if($result[3]['name'] == $result[4]['name'] && $result[3]['name'] == $result[5]['name']){
         $gain += $result[3]['gain'] * $mise;
+        $result[3]['prock'] = 1;
+        $result[4]['prock'] = 1;
+        $result[5]['prock'] = 1;
         }
          if($result[6]['name'] == $result[7]['name'] && $result[6]['name'] == $result[8]['name']){
         $gain += $result[6]['gain'] * $mise;
+        $result[6]['prock'] = 1;
+        $result[7]['prock'] = 1;
+        $result[8]['prock'] = 1;
         }
          if($result[0]['name'] == $result[4]['name'] && $result[0]['name'] == $result[8]['name']){
         $gain += $result[0]['gain'] * $mise;
+        $result[0]['prock'] = 1;
+        $result[4]['prock'] = 1;
+        $result[8]['prock'] = 1;
         }
          if($result[6]['name'] == $result[4]['name'] && $result[6]['name'] == $result[2]['name']){
         $gain += $result[6]['gain'] * $mise;
+        $result[6]['prock'] = 1;
+        $result[4]['prock'] = 1;
+        $result[2]['prock'] = 1;
         }
     
 
@@ -68,6 +83,9 @@ if (isset($_POST['mise'])) {
     $resultSpin = [];
     foreach($result as $icone) {
         array_push($resultSpin,$icone['px']);
+    }
+    foreach($result as $icone) {
+        array_push($resultSpin,$icone['prock']);
     }
     array_push($resultSpin,$gain,$_SESSION['solde']);
 

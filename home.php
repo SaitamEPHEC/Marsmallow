@@ -70,7 +70,7 @@ if (!isset($_SESSION['solde'])) {
     background-color: rgba(0,0,0,0.5);
     font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 44px;
+    font-size: 40px;
     padding-left : 20px;
     padding-right : 20px;
 }
@@ -95,8 +95,84 @@ if (!isset($_SESSION['solde'])) {
 
 }
 .miseActive {
-    background-color: red;
+    background-image: linear-gradient(white, #dc0101);
 }
+
+.smallerButton{
+    width: 50%;
+}
+
+.mise{
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+}
+
+.borderlighter{
+    
+    animation: pulse 2s infinite;
+}
+
+
+
+@keyframes pulse {
+  0% {
+    box-shadow : inset 0 0 35px #ff0000;
+    
+  }
+  25%{
+    box-shadow : inset 0 0 35px #fff700;
+
+    
+  }
+  50%{
+    box-shadow : inset 0 0 35px #ff0000;
+
+  }
+  75%{
+    box-shadow : inset 0 0 35px #fff700;
+
+  }
+  100% {
+    box-shadow : inset 0 0 35px #ff0000;
+  }
+}
+
+.bigwin{
+    /*position: absolute;
+    z-index: 10;
+    bottom: 10%;
+    background-image: url('images/bande_bigwin.png');
+    background-size: 1550px;
+    max-width: 1550px;
+    height: 100%;*/
+    position: absolute;
+    max-width: 1550px;
+    bottom: 5%;
+}
+
+.banderolle{
+    width: 100%;
+    position: relative;
+}
+.img_bigwin1{
+    position: absolute;
+    left: 0px;
+    top: 230px;
+    z-index: 10;
+    width: 30%;
+    transform: translateX(100%);    
+}
+
+.img_bigwin2{
+    position: absolute;
+    left: 0px;
+    top: 230px;
+    z-index: 10;
+    width: 30%;
+    transform: translateX(100%);    
+}
+
 </style>
 
 <main class="container-fluid background">
@@ -146,8 +222,13 @@ if (!isset($_SESSION['solde'])) {
                 <div class="mb-3">
                 <input id="control" type="button" value="Start">
                 </div> -->
+                <div class="d-none bigwin">
+                    <img src="images/bande_bigwin.png" class ="banderolle" alt="">
+                    <img src="images/soucoupe.png" class ="img_bigwin1" alt="">
+                    <img src="images/bigwin_texte.png" class="img_bigwin2" alt="">
+                </div>
                 <div class="height d-flex align-items-end justify-content-end">
-                    <input id="control" type="image" alt="bouton play" src="images/play.png" value="Start">
+                    <input id="control" type="image" alt="bouton play" class="smallerButton" src="images/play.png" value="Start">
                     <!-- <input id="control" type="button" value="Start"> -->
                 </div>
                 <div class="col-md-12 barre">
@@ -157,7 +238,7 @@ if (!isset($_SESSION['solde'])) {
                     <input type="button" name="0.10" class="mise miseActive" value="0.10€">
                     <input type="button" name="0.20" class="mise" value="0.20€">
                     <input type="button" name="0.50" class="mise" value="0.50€">
-                    <input type="button" name="1" class="mise" value="1€">
+                    <input type="button" name="1" class="mise" value="1.00€">
                     
                     <!-- <span>
                         <select id="mise" name="mise" class="form-control" id="">
