@@ -266,6 +266,7 @@ $(document).ready(function() {
     */
      var gain;
      var solde;
+     var bigwin;
     $('#control').click(function() {
         var x;
         
@@ -306,6 +307,7 @@ $(document).ready(function() {
                         
                          gain = result[18];
                          solde = result[19];
+                         bigwin = result[20];
                          console.log(result);
                         
                              }               });     
@@ -391,6 +393,15 @@ $(document).ready(function() {
 
                     $(".finalSolde").html(solde);
                     $(".finalGain").html(gain);
+                    if (bigwin ==1) {
+                        $(".bigwin").addClass("bigwinBande");
+
+                        $(".bigwin").removeClass("bigwin");
+
+                    }
+                    else if (bigwin == 2) {
+                        $(".video_mars").css("display","block");
+                    }
                     valControl = "Start";
                 }
             }, 100);

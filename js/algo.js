@@ -9,6 +9,18 @@ $(".mise").click(function() {
 })
   
 
+$(".start").click(function() {
 
+    $(".start").css("display","none");
+    $(".background").css("display","block");
+
+})
+
+$(".checkInfo").click(function() {
+    $.dialog({
+        title: 'test',
+        content: 'test',
+    });
+})
 
 })

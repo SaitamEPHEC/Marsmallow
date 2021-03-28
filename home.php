@@ -13,9 +13,10 @@ if (!isset($_SESSION['solde'])) {
   crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="info.css">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 
 <script src="js/jquery.spritely.js"></script>
 <script src="js/jquery.backgroundPosition.js"></script>
@@ -25,12 +26,13 @@ if (!isset($_SESSION['solde'])) {
 
 
 
+
 <style>
  
  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
 
 .slot {
-	background:url("images/rouleau.png") repeat-y; /*Taken from http://www.swish-designs.co.uk*/
+	background:url("images/Rouleau.png") repeat-y; /*Taken from http://www.swish-designs.co.uk*/
 	width:250px;
 	height:200px;
 	float:left;
@@ -55,6 +57,7 @@ if (!isset($_SESSION['solde'])) {
     background-size: 1550px;
     background-position: center;
     margin-top: 20px;
+    display: none;
 }
 
 .head-spin{
@@ -173,19 +176,102 @@ if (!isset($_SESSION['solde'])) {
     transform: translateX(100%);    
 }
 
+.bigwinBande {
+
+  position: absolute;
+    width: -webkit-fill-available;
+    max-height: 100%;
+    left: 0;
+    bottom: 20%;
+    animation: bigwin 3s ;
+    z-index:5;
+    opacity : 0;
+    display:block;
+}
+
+.bigwin {
+    display:none;
+}
+
+
+@keyframes bigwin {
+  0% {
+margin-right:800px;    
+  }
+  50% {
+    margin-right:0px;    
+  }
+  75% {
+    margin-left: 0;
+ }
+ 90% {
+     opacity:1;
+ }
+100% {
+    opacity:0; 
+}
+}
+
+
+.video_mars{
+position: absolute;
+left: -160px;
+top: -20px;
+z-index: 20;
+width: 120%;
+height: 115%;
+display:none;
+animation: marswin 3s ;
+
+}
+
+@keyframes marswin {
+  0% {
+opacity:0   
+  }
+  50% {
+opacity: 0.5;  }
+  75% {
+opacity: 0.75; }
+ 90% {
+     opacity:0.9;
+ }
+100% {
+    opacity:1; 
+}
+}
+
+.start {
+    width: 100%;
+    height: 100%;
+
+}
+.start-video {
+    width: 100%;
+    max-height: 100%;
+    height: auto;
+    background-size: cover;
+    animation: zoomstart 1s infinite alternate;
+
+}
+body {
+    background-color:black
+}
+
 </style>
 
+<div class="start">
+<img class="start-video" src="images/start.png" alt="">
+</div>
+
+
 <main class="container-fluid background">
+<img src="images/BIGWIN.png" class="bigwin" >
     <div class="wrapper">
         <div class="row">
             <div class="col-md-12 mx-auto">
-            
+           <!-- -->
                 <form>
-                    <!-- <div class="head-spin">
-                    <img src="images/Logo.png" style="width:100%;" >
-
-                    </div> -->
-
                     <div class="contain">
                     	<div class="slot-wrapper">
                     		<div id="slot1" class="slot"></div>
@@ -222,18 +308,32 @@ if (!isset($_SESSION['solde'])) {
                 <div class="mb-3">
                 <input id="control" type="button" value="Start">
                 </div> -->
-                <div class="d-none bigwin">
-                    <img src="images/bande_bigwin.png" class ="banderolle" alt="">
-                    <img src="images/soucoupe.png" class ="img_bigwin1" alt="">
-                    <img src="images/bigwin_texte.png" class="img_bigwin2" alt="">
+
+                <div>
+                <video controls preload="auto" class="video_mars" >
+                <source src="video/WINMARS_2.mp4" type="video/mp4">
+                <!-- <source src="tortue.webm" type="video/webm"> -->
+                Le fichier ne peut pas être lu
+                </video>
                 </div>
+
                 <div class="height d-flex align-items-end justify-content-end">
+                    
+                        <img id="myImg" src="images/page_info.png"  style="width:100%;max-width:75px">
+                        <!-- <button type="button" id="myImg" data-toggle="modal" src="images/page_info.png" data-target="#exampleModal">INFOS</button> -->
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="img01">
+                        <div id="caption"></div>
+                        </div>
                     <input id="control" type="image" alt="bouton play" class="smallerButton" src="images/play.png" value="Start">
                     <!-- <input id="control" type="button" value="Start"> -->
                 </div>
+                
                 <div class="col-md-12 barre">
                     <span class="mr-5 ">Solde :  <span class="finalSolde"><?php echo $_SESSION['solde']; ?> </span>€</span>
-                    <span class="ml-5 mr-5 ">Gain : <span class="finalGain"></span> € </span>
+                    <span class="ml-5 mr-5 ">Gain : <span class="finalGain">0</span> € </span>
                     
                     <input type="button" name="0.10" class="mise miseActive" value="0.10€">
                     <input type="button" name="0.20" class="mise" value="0.20€">
@@ -256,3 +356,28 @@ if (!isset($_SESSION['solde'])) {
         </div>
     </div>
 </main>
+
+
+
+ <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+ // Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+modal.style.display = "block";
+modalImg.src = this.src;
+captionText.innerHTML = this.alt;
+}
+
+ // Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+ // When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+modal.style.display = "none";
+}
+</script>
